@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ListResults from './src/components/ListResults';
 import Search from "./src/components/Search";
 
@@ -13,7 +13,8 @@ export default function App() {
     setMovies(newMovies);
   }
 
-  console.log(movies);
+  // console.log(movies);
+
   return (
     <>
       <Search searchText={searchText} onSearch={(searchedText) => getSearchedMovies(searchedText)} />
