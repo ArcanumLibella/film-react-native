@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity, Alert } from "react-native";
+import {REACT_APP_API_URL_IMAGE} from "@env"
 
 export const Card = ({movieTitle, releaseDate, moviePicture}) => {
   return (
@@ -7,7 +8,13 @@ export const Card = ({movieTitle, releaseDate, moviePicture}) => {
       <View style={styles.main_container}>
 
         <View style={styles.image}>
-          <Image style={styles.moviePicture} resizeMode={'contain'} source={{uri : moviePicture}}/>
+          {
+            moviePicture ?
+            (<Image style={styles.moviePicture} resizeMode={'contain'} source={{uri : `${REACT_APP_API_URL_IMAGE}${moviePicture}`}}/>)
+            :
+            // (<View style={{backgroundColor : '#cccccc'}}></View>)
+            (<Text>No IMAGE</Text>)
+          }
         </View>
 
         <View style={styles.movieDescription}>
