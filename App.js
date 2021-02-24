@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import ListResults from './src/components/ListResults';
 import Search from "./src/components/Search";
+import {REACT_APP_API_URL, REACT_APP_API_KEY} from "@env"
 
-import data from './src/helpers/filmDatas';
+// import data from './src/helpers/filmDatas';
+import {getMovies} from './src/services/network'
 
 export default function App() {
   const [searchText, setSearchText] = useState("Mon texte");
-  const [movies, setMovies] = useState(data);
+  const [movies, setMovies] = useState([]);
 
   const getSearchedMovies = (searchedText) => {
-    const newMovies = data.filter(movie => movie.title.toLowerCase().includes(searchedText.toLowerCase()));
+    if (!searchedText) {
+      fetchMovies()
+    }
+
+    const newMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchedText.toLowerCase()));
     setMovies(newMovies);
   }
 
-  // console.log(movies);
+  async function fetchMovies() {
+    const result = await getMovies(null)
+    if (result) setMovies(result)
+  }
+
+  useEffect(() => {
+    fetchMovies()
+  }, [])
 
   return (
     <>
