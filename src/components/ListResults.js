@@ -5,20 +5,22 @@ import { Card } from './Card';
 
 export default class ListResults extends React.Component {
   render() {
-    const {movies} = this.props;
+    const {movies, onEndReached} = this.props;
 
       return (
         <SafeAreaView style={styles.container}>
           <FlatList 
             data={movies}
-            keyExtractor={item => item.id.toString()}
+            keyExtractor={item => item.id.toString()+Math.random()}
             renderItem={({item}) => 
               <Card 
-                key={item.id.toString()} 
+                key={item.id.toString()+Math.random()} 
                 movieTitle={item.title} 
                 releaseDate={item.release_date}
                 moviePicture={item.poster_path}
               />}
+              onEndReached={onEndReached}
+              onEndReachedThreshold={0.5}
           />
         </SafeAreaView>
       )
