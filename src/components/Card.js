@@ -12,8 +12,8 @@ export const Card = ({movieTitle, releaseDate, moviePicture}) => {
             moviePicture ?
             (<Image style={styles.moviePicture} resizeMode={'contain'} source={{uri : `${REACT_APP_API_URL_IMAGE}${moviePicture}`}}/>)
             :
-            // (<View style={{backgroundColor : '#cccccc'}}></View>)
-            (<Text>No IMAGE</Text>)
+            (<View style={{backgroundColor : '#cccccc', flex: 1}}></View>)
+            // (<Text>No IMAGE</Text>)
           }
         </View>
 
