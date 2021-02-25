@@ -7,25 +7,22 @@ import {REACT_APP_API_URL, REACT_APP_API_KEY} from "@env"
 import {getMovies} from './src/services/network'
 
 export default function App() {
-  const [searchText, setSearchText] = useState("Mon texte");
+  const [searchText, setSearchText] = useState(null);
   const [movies, setMovies] = useState([]);
 
   const getSearchedMovies = (searchedText) => {
-    if (!searchedText) {
-      fetchMovies()
-    }
-
-    const newMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchedText.toLowerCase()));
-    setMovies(newMovies);
+    setSearchText(searchedText === ''? null :searchedText )
+    fetchMovies(searchedText === ''? null :searchedText )
   }
 
-  async function fetchMovies() {
-    const result = await getMovies(null)
-    if (result) setMovies(result)
+  function fetchMovies(query) {
+    getMovies(query)
+    .then(res => setMovies(res.results))
+    // if (result) console.log(result)
   }
 
   useEffect(() => {
-    fetchMovies()
+    fetchMovies(searchText)
   }, [])
 
   return (

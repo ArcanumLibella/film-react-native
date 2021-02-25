@@ -1,4 +1,5 @@
 import React from 'react';
+import { SafeAreaView } from 'react-native';
 import { View, StyleSheet, FlatList, Text } from "react-native";
 import { Card } from './Card';
 
@@ -7,7 +8,7 @@ export default class ListResults extends React.Component {
     const {movies} = this.props;
 
       return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           <FlatList 
             data={movies}
             keyExtractor={item => item.id.toString()}
@@ -19,7 +20,7 @@ export default class ListResults extends React.Component {
                 moviePicture={item.poster_path}
               />}
           />
-        </View>
+        </SafeAreaView>
       )
   }
 }
