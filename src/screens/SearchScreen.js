@@ -5,7 +5,7 @@ import Search from "../components/Search";
 // import data from './src/helpers/filmDatas';
 import {getMovies} from '../services/network'
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation: {navigate} }) => {
   const [searchText, setSearchText] = useState(null);
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,7 +47,9 @@ const SearchScreen = () => {
   return (
     <>
       <Search searchText={searchText} onSearch={(searchedText) => getSearchedMovies(searchedText)} />
-      <ListResults movies={movies} searchedText={searchText} onEndReached={fetchMoreMovies}/>
+      <ListResults movies={movies} searchedText={searchText} onEndReached={fetchMoreMovies}
+        goToDetails={(id) => navigate('Details', {id})}
+      />
     </>
   );
 }
