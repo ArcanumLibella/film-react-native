@@ -2,9 +2,10 @@ import React from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity, Alert } from "react-native";
 import {REACT_APP_API_URL_IMAGE} from "@env"
 
-export const Card = ({movieTitle, releaseDate, moviePicture}) => {
+export const Card = ({movieTitle, releaseDate, moviePicture, goToDetails}) => {
   return (
-    <TouchableOpacity onPress={() => {Alert.alert('Pouet pouet !')}}>
+    <TouchableOpacity 
+      onPress={goToDetails}>
       <View style={styles.main_container}>
 
         <View style={styles.image}>
