@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { View, StyleSheet, Image, Text, TouchableOpacity, Alert } from "react-native";
+import {REACT_APP_API_URL_IMAGE} from "@env"
+// import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
 
 import {getMovieById} from '../services/network'
 
@@ -15,12 +19,30 @@ const MovieDetailsScreen = ({route}) => {
 
   useEffect(() => {
     fetchMovie()
+    // console.log('mov', movieDetails);
   }, [])
 
   return (
     <View style={{flex:1}}>
-      <View style={styles.bgHeader}></View>
-      <View style={styles.titleContainer}></View>
+      <View style={styles.bgHeader}>
+          <Image 
+            style={styles.bgHeaderImage}
+            source={{uri: `${REACT_APP_API_URL_IMAGE}${movieDetails.backdrop_path}`}}
+            resizeMode={'cover'}
+          />
+          <AntDesign style={styles.bgHeaderPlay} name="caretright" size={22} color="white" />
+        </View>
+      <View style={styles.titleContainer}>
+          <Image 
+                style={styles.titleImage}
+                source={{uri: `${REACT_APP_API_URL_IMAGE}${movieDetails.poster_path}`}}
+                resizeMode={'contain'}
+              />
+          <View style={styles.titleText}>
+              <Text style={styles.titleBold}>{movieDetails.title}</Text>
+              {/* <Text>{movieDetails}</Text> */}
+          </View>
+        </View>
       <View style={styles.descriptionContainer}></View>
     </View>
   )
@@ -31,9 +53,39 @@ const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: 'red'
   },
+  bgHeaderImage: {
+    flex: 1
+  },
+  bgHeaderPlay: {
+    position: 'absolute',
+    bottom: -15,
+    right: 30,
+    backgroundColor: '#F44802',
+    padding: 12,
+    borderRadius: 22,
+    overflow: 'hidden',
+  },
   titleContainer: {
     flex: 1,
-    backgroundColor: 'green'
+    flexDirection: 'row',
+    // backgroundColor: 'green'
+  },
+  titleImage: {
+    // flex: 1,
+    borderWidth: 3,
+    borderColor: '#FFFF',
+    borderRadius: 15,
+    marginLeft: 10,
+    width: 100,
+    height: 150,
+    top: -30
+  },
+  titleText: {
+    marginLeft: 15,
+    marginTop: 30
+  },
+  titleBold: {
+    fontWeight: 'bold'
   },
   descriptionContainer: {
     flex: 2,

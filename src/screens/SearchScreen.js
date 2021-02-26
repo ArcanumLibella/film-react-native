@@ -48,7 +48,7 @@ const SearchScreen = ({ navigation: {navigate} }) => {
     <>
       <Search searchText={searchText} onSearch={(searchedText) => getSearchedMovies(searchedText)} />
       <ListResults movies={movies} searchedText={searchText} onEndReached={fetchMoreMovies}
-        goToDetails={(id) => navigate('Details', {id})}
+        goToDetails={(id) => navigate('Details', {id: id})}
       />
     </>
   );

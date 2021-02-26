@@ -12,9 +12,6 @@ export const MainNavigator = () => {
         options={{ 
           headerShown: false, 
         }}
-        // onPress={ ({ navigation: { navigate } }) => {
-        //   navigate('Details')
-        // }}
       />
       <Stack.Screen name="Details" component={MovieDetailsScreen} 
         options={{ 
